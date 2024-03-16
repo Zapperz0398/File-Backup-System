@@ -9,6 +9,6 @@ def map_root_file_system(root_dir : str):
     file_system_map = {}
 
     for dirpath, dirname, filename in os.walk(root_dir):
-        print(filename.size)
+        pass
 
 map_root_file_system("C:\PDM")
