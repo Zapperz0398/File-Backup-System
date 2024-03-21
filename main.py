@@ -4,6 +4,9 @@ import sqlite3
 def establish_database_connection(database_name):
     """
     Establishes a connection to the database.
+
+    Parameters:
+    - database_name: Name of the database to connect to
     
     """
 
@@ -15,6 +18,11 @@ def establish_database_connection(database_name):
 def map_root_file_system(root_dir : str):
     """
     Maps the entire file system from the root directory.
+
+    Parameters:
+    root_dir: The root directory to map
+
+    Returns: file_map (list)
     
     """
 
