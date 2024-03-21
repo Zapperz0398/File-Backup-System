@@ -8,11 +8,30 @@ def establish_database_connection(database_name):
 
     Parameters:
     - database_name: Name of the database to connect to
-    
     """
 
-    database = sqlite3.connect(database_name)
-    database_cursor = database.cursor()
+    if not os.path.exists(database_name):
+        with open(database_name, "x") as _:
+            pass
+
+        database = sqlite3.connect(database_name)
+        database_cursor = database.cursor()
+
+        database_cursor.execute("""CREATE TABLE Directories (
+                                name TEXT PRIMARY KEY,
+                                path TEXT)
+        """)
+
+        database_cursor.execute("""CREATE TABLE Files (
+                                name TEXT PRIMARY KEY,
+                                path TEXT,
+                                byte_size int,
+                                last_modified TEXT
+                                created TEXT)
+        """)
+    else:
+        database = sqlite3.connect(database_name)
+        database_cursor = database.cursor()
 
     return database, database_cursor
 
@@ -25,7 +44,6 @@ def map_root_file_system(root_dir: str):
     root_dir: The root directory to map
 
     Returns: file_map (list)
-    
     """
 
     file_system_map = {"Directories": ["C:\\Backup\\"], "Files": []}
