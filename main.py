@@ -62,11 +62,11 @@ def map_root_file_system(root_dir: str):
         for file in filename:
             filepath = original_dirpath + "\\" + file
             file_system_map["Files"][filepath] = {}
-            file_system_map["creation_time"] = os.path.getctime(filepath)
+            file_system_map["Files"][filepath]["creation_time"] = os.path.getctime(filepath)
             file_system_map["Files"][filepath]["last_modified"] = os.path.getmtime(filepath)
             file_system_map["Files"][filepath]["byte_size"] = os.path.getsize(filepath)
 
-
+    print(file_system_map)
 def make_directories(file_map):
     for path in file_map:
         os.mkdir(path)
