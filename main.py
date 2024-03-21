@@ -1,4 +1,16 @@
 import os
+import sqlite3
+
+def establish_database_connection(database_name):
+    """
+    Establishes a connection to the database.
+    
+    """
+
+    database = sqlite3.connect(database_name)
+    database_cursor = database.cursor()
+
+    return database, database_cursor
 
 def map_root_file_system(root_dir : str):
     """
@@ -23,4 +35,5 @@ def make_directories(file_map):
         os.mkdir(path)
 
 
+database, cursor = establish_database_connection("database-map.db")
 map_root_file_system("C:\PDM")
