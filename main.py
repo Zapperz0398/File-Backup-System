@@ -46,9 +46,11 @@ def map_root_file_system(root_dir: str):
     Returns: file_map (list)
     """
 
-    file_system_map = {"Directories": ["C:\\Backup\\"], "Files": []}
+    file_system_map = {"Directories": ["C:\\Backup\\"], "Files": {}}
 
     for dirpath, dirname, filename in os.walk(root_dir):
+        original_dirpath = dirpath
+
         if "C:\\" in dirpath:
             dirpath = dirpath.removeprefix("C:\\")
             dirpath = r"C:\Backups" + "\\" + dirpath + "\\"
@@ -58,8 +60,11 @@ def map_root_file_system(root_dir: str):
         file_system_map["Directories"] += [dirpath]
 
         for file in filename:
-            filepath = r"C:\Backups" + "\\" + dirpath + file
-            file_system_map["Files"] += [filepath]
+            filepath = original_dirpath + "\\" + file
+            file_system_map["Files"][filepath] = {}
+            file_system_map["creation_time"] = os.path.getctime(filepath)
+            file_system_map["Files"][filepath]["last_modified"] = os.path.getmtime(filepath)
+            file_system_map["Files"][filepath]["byte_size"] = os.path.getsize(filepath)
 
 
 def make_directories(file_map):
