@@ -95,10 +95,10 @@ def map_root_file_system(root_dir: str):
     Returns: file_map (list)
     """
 
-    file_system_map = {"Directories": {}, "Files": {}}
+    file_system_map = {"Directories": [], "Files": {}}
 
     for dirpath, dirname, filename in os.walk(root_dir):
-        file_system_map["Directories"] = dirpath
+        file_system_map["Directories"] += [dirpath]
 
         for file in filename:
             filepath = dirpath + "\\" + file
@@ -110,7 +110,6 @@ def map_root_file_system(root_dir: str):
             file_system_map["Files"][filepath]["creation_time"] = creation_time
             file_system_map["Files"][filepath]["last_modified"] = last_modified
             file_system_map["Files"][filepath]["byte_size"] = file_size
-
             
 def make_directories(file_map):
     for path in file_map:
