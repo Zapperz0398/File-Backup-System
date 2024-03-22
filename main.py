@@ -60,13 +60,19 @@ def map_root_file_system(root_dir: str):
         file_system_map["Directories"] += [dirpath]
 
         for file in filename:
-            filepath = original_dirpath + "\\" + file
+            filepath = original_dirpath + "\\" + file    
+            creation_time = os.path.getctime(filepath)
+            last_modified = os.path.getmtime(filepath)
+            file_size = os.path.getsize(filepath)
+
             file_system_map["Files"][filepath] = {}
-            file_system_map["Files"][filepath]["creation_time"] = os.path.getctime(filepath)
-            file_system_map["Files"][filepath]["last_modified"] = os.path.getmtime(filepath)
-            file_system_map["Files"][filepath]["byte_size"] = os.path.getsize(filepath)
+            file_system_map["Files"][filepath]["creation_time"] = creation_time
+            file_system_map["Files"][filepath]["last_modified"] = last_modified
+            file_system_map["Files"][filepath]["byte_size"] = file_size
 
     print(file_system_map)
+
+
 def make_directories(file_map):
     for path in file_map:
         os.mkdir(path)
