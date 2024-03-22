@@ -26,8 +26,8 @@ def establish_database_connection(database_name):
                                 name TEXT PRIMARY KEY,
                                 path TEXT,
                                 byte_size int,
-                                last_modified TEXT
-                                created TEXT)
+                                created TEXT,
+                                last_modified TEXT)
         """)
     else:
         database = sqlite3.connect(database_name)
