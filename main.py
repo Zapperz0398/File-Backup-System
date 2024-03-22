@@ -41,6 +41,16 @@ def establish_database_connection(database_name):
 
 
 def database_table_exists(database_cursor, table_name):
+    """
+    Checks to see if a table exists in a database using the databases cursor
+
+    Parameters:
+    - databasae_cursor: The cursor the database is associated with
+    - table_name: The name of the table to see if it exists
+
+    Returns: bool
+    """
+
     table = database_cursor.execute(f"""SELECT name FROM sqlite_master
                                         WHERE type = 'table'
                                         AND name = '{table_name}'""")
@@ -52,6 +62,15 @@ def database_table_exists(database_cursor, table_name):
 
 
 def create_database_tables(database_cursor):
+    """
+    Creates the tables for the applications database
+
+    Parameters:
+    - database_cursor: The cursor the database is associated with
+    
+    Returns: None
+    """
+    
     database_cursor.execute("""CREATE TABLE Directories (
                                 name TEXT PRIMARY KEY,
                                 path TEXT)
