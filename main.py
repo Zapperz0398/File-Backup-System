@@ -32,6 +32,29 @@ def establish_database_connection(database_name):
     else:
         database = sqlite3.connect(database_name)
         database_cursor = database.cursor()
+        
+        table = database_cursor.execute("""SELECT name FROM sqlite_master
+                                        WHERE type = 'table'
+                                        AND name = 'Directories'""")
+        
+        if table.fetchone() is None:
+            database_cursor.execute("""CREATE TABLE Directories (
+                                    name TEXT PRIMARY KEY,
+                                    path TEXT)
+            """)
+
+        table = database_cursor.execute("""SELECT name FROM sqlite_master
+                                        WHERE type = 'table'
+                                        AND name = 'Files'""")
+        
+        if table.fetchone() is None:
+            database_cursor.execute("""CREATE TABLE Files (
+                                name TEXT PRIMARY KEY,
+                                path TEXT,
+                                byte_size int,
+                                created TEXT,
+                                last_modified TEXT)
+            """)
 
     return database, database_cursor
 
@@ -70,13 +93,11 @@ def map_root_file_system(root_dir: str):
             file_system_map["Files"][filepath]["last_modified"] = last_modified
             file_system_map["Files"][filepath]["byte_size"] = file_size
 
-    print(file_system_map)
-
 
 def make_directories(file_map):
     for path in file_map:
         os.mkdir(path)
 
 
-# database, cursor = establish_database_connection("database-map.db")
+database, cursor = establish_database_connection("database-map.db")
 map_root_file_system("C:\PDM")
