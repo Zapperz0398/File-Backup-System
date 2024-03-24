@@ -3,10 +3,9 @@ import sqlite3
 
 
 def establish_database_connection(database_name):
-    # Update necessary in docstrings to required
     """
     Establishes a connection to the database.
-    Creates a database file if none exists with necessary tables
+    Creates a database file if none exists with required tables
 
     Parameters:
     - database_name: Name of the database to connect to
@@ -114,7 +113,7 @@ def map_root_file_system(root_dir: str):
             file_system_map["Files"][filepath]["byte_size"] = file_size
 
 
-def make_directories(file_map):  # Update syntax
+def make_directories(file_map):
     for path in file_map:
         os.mkdir(path)
 
