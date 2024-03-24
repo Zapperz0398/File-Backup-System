@@ -126,10 +126,5 @@ def map_root_file_system(root_dir: str):
     return file_system_map
 
 
-def make_directories(file_map):
-    for path in file_map:
-        os.mkdir(path)
-
-
 database = establish_database_connection("database-map.db")
 map_root_file_system(r"C:\PDM")
