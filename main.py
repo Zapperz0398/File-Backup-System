@@ -33,7 +33,7 @@ def establish_database_connection(database_name):
         if not database_table_exists(database_cursor, "Files"):
             database_cursor.execute("""CREATE TABLE Files (
                                 ID int PRIMARY KEY,
-                                name TEXT,
+                                name TEXT PRIMARY KEY,
                                 path TEXT,
                                 byte_size int,
                                 created TEXT,
@@ -75,17 +75,19 @@ def create_database_tables(database_cursor):
     """
 
     database_cursor.execute("""CREATE TABLE Directories (
-                                name TEXT PRIMARY KEY,
+                                ID int PRIMARY KEY,
+                                name Text,
                                 path TEXT)
-        """)
+    """)
 
     database_cursor.execute("""CREATE TABLE Files (
+                                ID int PRIMARY KEY,
                                 name TEXT PRIMARY KEY,
                                 path TEXT,
                                 byte_size int,
                                 created TEXT,
                                 last_modified TEXT)
-        """)
+    """)
 
 
 def map_root_file_system(root_dir: str):
