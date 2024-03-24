@@ -4,7 +4,7 @@ import sqlite3
 
 def establish_database_connection(database_name):
     """
-    Establishes a connection to the database.
+    Establishes a connection to the database. Creates a database file if none exists with necessary tables
 
     Parameters:
     - database_name: Name of the database to connect to
@@ -37,16 +37,16 @@ def establish_database_connection(database_name):
                                 last_modified TEXT)
             """)
 
-    return database, database_cursor
+    return database, database_cursor  # Update returns
 
 
 def database_table_exists(database_cursor, table_name):
     """
-    Checks to see if a table exists in a database using the databases cursor
+    Checks to see if a table exists in a database using a databases cursor object
 
     Parameters:
     - databasae_cursor: The cursor the database is associated with
-    - table_name: The name of the table to see if it exists
+    - table_name: The name of the table to check if it exists
 
     Returns: bool
     """
@@ -87,7 +87,7 @@ def create_database_tables(database_cursor):
 
 def map_root_file_system(root_dir: str):
     """
-    Maps the entire file system from the root directory.
+    Maps the entire file system from the chosen directory.
 
     Parameters:
     root_dir: The root directory to map
@@ -111,7 +111,7 @@ def map_root_file_system(root_dir: str):
             file_system_map["Files"][filepath]["last_modified"] = last_modified
             file_system_map["Files"][filepath]["byte_size"] = file_size
             
-def make_directories(file_map):
+def make_directories(file_map):  # Update syntax
     for path in file_map:
         os.mkdir(path)
 
