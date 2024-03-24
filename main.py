@@ -37,7 +37,7 @@ def establish_database_connection(database_name):
                                 last_modified TEXT)
             """)
 
-    return database, database_cursor  # Update returns
+    return database
 
 
 def database_table_exists(database_cursor, table_name):
