@@ -25,13 +25,15 @@ def establish_database_connection(database_name):
 
         if not database_table_exists(database_cursor, "Directories"):
             database_cursor.execute("""CREATE TABLE Directories (
-                                        name TEXT PRIMARY KEY,
+                                        ID int PRIMARY KEY,
+                                        name Text,
                                         path TEXT)
             """)
 
         if not database_table_exists(database_cursor, "Files"):
             database_cursor.execute("""CREATE TABLE Files (
-                                name TEXT PRIMARY KEY,
+                                ID int PRIMARY KEY,
+                                name TEXT,
                                 path TEXT,
                                 byte_size int,
                                 created TEXT,
