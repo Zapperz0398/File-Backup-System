@@ -100,21 +100,30 @@ def map_root_file_system(root_dir: str):
     Returns: file_map (list)
     """
 
-    file_system_map = {"Directories": [], "Files": {}}
+    file_system_map = {"Directories": {}, "Files": {}}
+    directory_id = 0
+    file_id = 0
 
     for dirpath, dirname, filename in os.walk(root_dir):
-        file_system_map["Directories"] += [dirpath]
+        directory_id += 1
+
+        file_system_map["Directories"][dirpath] = {}
+        file_system_map["Directories"][dirpath]["ID"] = directory_id
 
         for file in filename:
+            file_id += 1
             filepath = dirpath + "\\" + file
             creation_time = os.path.getctime(filepath)
             last_modified = os.path.getmtime(filepath)
             file_size = os.path.getsize(filepath)
 
             file_system_map["Files"][filepath] = {}
+            file_system_map["Files"][filepath]["ID"] = file_id
             file_system_map["Files"][filepath]["creation_time"] = creation_time
             file_system_map["Files"][filepath]["last_modified"] = last_modified
             file_system_map["Files"][filepath]["byte_size"] = file_size
+
+    return file_system_map
 
 
 def make_directories(file_map):
@@ -122,5 +131,5 @@ def make_directories(file_map):
         os.mkdir(path)
 
 
-database, cursor = establish_database_connection("database-map.db")
+database = establish_database_connection("database-map.db")
 map_root_file_system(r"C:\PDM")
