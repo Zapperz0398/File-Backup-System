@@ -100,15 +100,15 @@ def map_root_file_system(root_dir: str):
     Returns: file_map (list)
     """
 
-    file_system_map = {"Directories": {}, "Files": {}}
+    file_system_map = {"Directories": [], "Files": {}}
     directory_id = 0
     file_id = 0
 
     for dirpath, dirname, filename in os.walk(root_dir):
         directory_id += 1
 
-        file_system_map["Directories"][dirpath] = {}
-        file_system_map["Directories"][dirpath]["ID"] = directory_id
+        directory_data = {"ID": directory_id, "path": dirpath}
+        file_system_map["Directories"] += [directory_data]
 
         for file in filename:
             file_id += 1
