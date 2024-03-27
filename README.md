@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a work-in-progress. It is a local and cloud backup program designed to provide users with a reliable and secure way to backup their important files. Please note that the current code on the main branch is not yet finished or released. It may not be stable and may not perform any functionality.
+This project is a work in progress. It is a local and cloud backup program designed to provide users with a reliable and secure way to backup their important files. Please note that the current code on the main branch is not yet finished or released. It may not be stable and may not perform any functionality.
 
 ## Features (Planned)
 
@@ -20,7 +20,7 @@ As the code is still in development, there are no specific instructions for gett
 
 ## Contributing
 
-Contributions are welcome!
+Contributions are welcome once the project reaches a more stable state! If you'd like to contribute to this project, you can start a discussion in the repository to share your ideas, ask questions, or discuss potential contributions with the community.
 
 ## License
 
@@ -28,4 +28,4 @@ This project is currently not licensed, as it is a work-in-progress. Once the pr
 
 ## Contact
 
-Currently there is no contact information for this project
+Currently, there is no contact information for this project
