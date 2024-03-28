@@ -126,5 +126,7 @@ def map_root_file_system(root_dir: str):
     return file_system_map
 
 
+root = os.environ.get("root_file")
+
 database = establish_database_connection("database-map.db")
-map_root_file_system(r"C:\PDM")
+map_root_file_system(root)
