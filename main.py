@@ -90,6 +90,23 @@ def create_database_tables(database_cursor):
     """)
 
 
+def get_operating_system():
+    """
+    Returns the name of the devices operating system
+    
+    Returns: (str) android, windows, unsupported    
+    """
+
+    if os.name == "posix":
+    	return "android"
+    
+    elif os.name == "nt":
+    	return "windows"
+    
+    else:
+    	return "unsupported"
+
+
 def map_root_file_system(root_dir: str):
     """
     Maps the entire file system from the chosen directory.
