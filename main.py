@@ -144,9 +144,9 @@ def map_root_file_system(root_dir: str):
 
 
 if get_operating_system() == "android":
-    root = os.environ.get("android_root_file")
+    root = os.environ.get("android_root_path")
 elif get_operating_system() == "windows":
-    root = os.environ.get("windows_root_file")
+    root = os.environ.get("windows_root_path")
 
 database = establish_database_connection("database-map.db")
 map_root_file_system(root)
