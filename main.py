@@ -82,7 +82,7 @@ def create_database_tables(database_cursor):
 
     database_cursor.execute("""CREATE TABLE Files (
                                 ID int PRIMARY KEY,
-                                name TEXT PRIMARY KEY,
+                                name TEXT,
                                 path TEXT,
                                 byte_size int,
                                 created TEXT,
