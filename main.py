@@ -33,7 +33,7 @@ def establish_database_connection(database_name):
         if not database_table_exists(database_cursor, "Files"):
             database_cursor.execute("""CREATE TABLE Files (
                                 ID int PRIMARY KEY,
-                                name TEXT PRIMARY KEY,
+                                name TEXT,
                                 path TEXT,
                                 byte_size int,
                                 created TEXT,
