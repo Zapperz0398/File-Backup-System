@@ -1,5 +1,6 @@
 import os
 import sqlite3
+from dotenv import load_dotenv
 
 
 def establish_database_connection(database_name):
@@ -126,7 +127,8 @@ def map_root_file_system(root_dir: str):
     return file_system_map
 
 
-root = os.environ.get("root_file")
+load_dotenv(".env")
+root = os.getenv("ROOT_DIR")
 
 database = establish_database_connection("database-map.db")
 map_root_file_system(root)
