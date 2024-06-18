@@ -28,4 +28,4 @@ This project is currently not licensed, as it is a work-in-progress. Once the pr
 
 ## Contact
 
-Currently, there is no contact information for this project
+For my contact information, check out my GitHub profile [here](https://github.com/Zapperz0398/)
