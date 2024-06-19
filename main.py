@@ -122,7 +122,7 @@ def map_root_file_system(root_dir: str):
 				file_last_modified_time = file_metadata.st_mtime
 				file_size = file_metadata.st_size
 
-				file_data = {"ID": file_id, "path": path, "last_modfied": file_last_modified_time, "size": file_size}
+				file_data = {"ID": file_id, "path": path, "last_modified": file_last_modified_time, "size": file_size}
 				file_system_map["Files"].append(file_data)
 
 	return file_system_map
