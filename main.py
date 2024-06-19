@@ -101,28 +101,30 @@ def map_root_file_system(root_dir: str):
     Returns: file_map (list)
     """
 
-    file_system_map = {"Directories": [], "Files": {}}
+    os.system(f"find {root_dir} > filemap.txt")
+
+    file_system_map = {"Directories": [], "Files": []}
     directory_id = 0
     file_id = 0
 
-    for dirpath, dirname, filename in os.walk(root_dir):
-        directory_id += 1
+    with open("filemap.txt", "r", encoding = "utf-8") as file:
+    	for line in file:
+    	    path = line.strip()
 
-        directory_data = {"ID": directory_id, "path": dirpath}
-        file_system_map["Directories"] += [directory_data]
+    	    if os.path.isdir(path):
+    	        directory_id += 1
 
-        for file in filename:
-            file_id += 1
-            filepath = dirpath + "\\" + file
-            creation_time = os.path.getctime(filepath)
-            last_modified = os.path.getmtime(filepath)
-            file_size = os.path.getsize(filepath)
+    	        directory_data = {"ID": directory_id, "path": path}
+    	        file_system_map["Directories"] += directory_data
+    	    elif os.path.isfile(path):
+    	        file_id += 1
 
-            file_system_map["Files"][filepath] = {}
-            file_system_map["Files"][filepath]["ID"] = file_id
-            file_system_map["Files"][filepath]["creation_time"] = creation_time
-            file_system_map["Files"][filepath]["last_modified"] = last_modified
-            file_system_map["Files"][filepath]["byte_size"] = file_size
+    	        file_metadata = os.stat(path)
+    	        file_last_modified_time = file_metadata.st_mtime
+    	        file_size = file_metadata.st_size
+
+    	        file_data = {"ID": file_id, "path": path, "last_modfied": file_last_modified_time, "size": file_size}
+    	        file_system_map["Files"] += file_data
 
     return file_system_map
 
@@ -131,4 +133,4 @@ load_dotenv(".env")
 root = os.getenv("ROOT_DIR")
 
 database = establish_database_connection("database-map.db")
-map_root_file_system(root)
+file_map = map_root_file_system(root)
