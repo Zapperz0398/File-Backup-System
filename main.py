@@ -90,6 +90,38 @@ def create_database_tables(database_cursor):
 	""")
 
 
+def add_data_to_database(database, data):
+	"""
+	Adds a mapped file-system data set to a local database
+	
+	Parameters:
+	- database: A local database connection object
+	- data: A mapped file-system data set
+	
+	Returns: None
+	"""
+	
+	database_cursor = database.cursor()
+	
+	for data_set in data["Directories"]:
+		directory_id = data_set["ID"]
+		directory_path = data_set["path"]
+			
+		database_cursor.execute("""INSERT INTO 'Directories' (ID, path) VALUES (?, ?)""", (directory_id, directory_path))
+		database.commit()
+	
+	for data_set in data["Files"]:
+		file_id = data_set["ID"]
+		file_path = data_set["path"]
+		file_last_modified_time = data_set["last_modified"]
+		file_size = data_set["size"]
+		
+		database_cursor.execute("""INSERT INTO 'Files' (ID, path, last_modified, byte_size) VALUES (?, ?, ?, ?)""", (file_id, file_path, file_last_modified_time, file_size))
+		database.commit()
+	
+	database.close()
+
+
 def map_root_file_system(root_dir: str):
 	"""
 	Maps the entire file system from the chosen directory.
@@ -132,4 +164,6 @@ load_dotenv(".env")
 ROOT = os.getenv("ROOT_DIR")
 
 DATABASE = establish_database_connection("database-map.db")
-map_root_file_system(ROOT)
+ROOT_FILE_MAP = map_root_file_system(ROOT)
+
+add_data_to_database(DATABASE, ROOT_FILE_MAP)
