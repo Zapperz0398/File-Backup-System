@@ -63,8 +63,7 @@ def database_table_exists(database_cursor, table_name):
 
 	if table.fetchone is None:
 		return False
-	else:
-		return True
+	return True
 
 
 def create_database_tables(database_cursor):
@@ -100,25 +99,25 @@ def add_data_to_database(database, data):
 	
 	Returns: None
 	"""
-	
+
 	database_cursor = database.cursor()
-	
+
 	for data_set in data["Directories"]:
 		directory_id = data_set["ID"]
 		directory_path = data_set["path"]
-			
+
 		database_cursor.execute("""INSERT INTO 'Directories' (ID, path) VALUES (?, ?)""", (directory_id, directory_path))
 		database.commit()
-	
+
 	for data_set in data["Files"]:
 		file_id = data_set["ID"]
 		file_path = data_set["path"]
 		file_last_modified_time = data_set["last_modified"]
 		file_size = data_set["size"]
-		
+
 		database_cursor.execute("""INSERT INTO 'Files' (ID, path, last_modified, byte_size) VALUES (?, ?, ?, ?)""", (file_id, file_path, file_last_modified_time, file_size))
 		database.commit()
-	
+
 	database.close()
 
 
