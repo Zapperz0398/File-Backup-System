@@ -1,3 +1,5 @@
+"""This file is the main file for running all resources & functions to backup files"""
+
 import os
 import sqlite3
 from dotenv import load_dotenv
@@ -13,7 +15,7 @@ def establish_database_connection(database_name):
     """
 
     if not os.path.exists(database_name):
-        with open(database_name, "x") as _:
+        with open(database_name, "x", encoding = "utf-8") as _:
             pass
 
         database = sqlite3.connect(database_name)
@@ -128,7 +130,7 @@ def map_root_file_system(root_dir: str):
 
 
 load_dotenv(".env")
-root = os.getenv("ROOT_DIR")
+ROOT = os.getenv("ROOT_DIR")
 
-database = establish_database_connection("database-map.db")
-map_root_file_system(root)
+DATABASE = establish_database_connection("database-map.db")
+map_root_file_system(ROOT)
