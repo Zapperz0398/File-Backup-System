@@ -103,7 +103,9 @@ def add_data_to_database(database, data):
 		directory_id = data_set["ID"]
 		directory_path = data_set["path"]
 
-		database_cursor.execute("""INSERT INTO 'Directories' (ID, path) VALUES (?, ?)""", (directory_id, directory_path))
+		db_query = """INSERT INTO 'Directories' (ID, path)
+			VALUES (?, ?)"""
+		database_cursor.execute(db_query, (directory_id, directory_path))
 		database.commit()
 
 	for data_set in data["Files"]:
@@ -112,7 +114,9 @@ def add_data_to_database(database, data):
 		file_last_modified_time = data_set["last_modified"]
 		file_size = data_set["size"]
 
-		database_cursor.execute("""INSERT INTO 'Files' (ID, path, last_modified, byte_size) VALUES (?, ?, ?, ?)""", (file_id, file_path, file_last_modified_time, file_size))
+		db_query = """INSERT INTO 'Files' (ID, path, last_modified, byte_size)
+			VALUES (?, ?, ?, ?)"""
+		database_cursor.execute(db_query, (file_id, file_path, file_last_modified_time, file_size))
 		database.commit()
 
 	database.close()
@@ -150,7 +154,11 @@ def map_root_file_system(root_dir: str):
 				file_last_modified_time = file_metadata.st_mtime
 				file_size = file_metadata.st_size
 
-				file_data = {"ID": file_id, "path": path, "last_modified": file_last_modified_time, "size": file_size}
+				file_data = {
+						    "ID": file_id, 
+						    "path": path, 
+						    "last_modified": file_last_modified_time,
+						    "size": file_size}
 				file_system_map["Files"].append(file_data)
 
 	return file_system_map
