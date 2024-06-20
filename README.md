@@ -20,7 +20,7 @@ As the code is still in development, there are no specific instructions for gett
 
 ## Contributing
 
-Contributions are welcome once the project reaches a more stable state! If you'd like to contribute to this project, you can start a discussion in the repository to share your ideas, ask questions, or discuss potential contributions with the community.
+Contributions are welcome! If you'd like to contribute to this project, you can start a discussion in the repository to share your ideas, ask questions, or discuss potential contributions with the community. You can also reach out to me with the contact info stated bolow!
 
 ## License
 
