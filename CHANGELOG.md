@@ -10,7 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Simple local database connection
 - Functionality for local database creation
-- Functionality to map Windows filesystem
+- Functionality to map device file-system based on root directory
+- Functionality to add a mapped file system to the database
 
 ### Changed
 
