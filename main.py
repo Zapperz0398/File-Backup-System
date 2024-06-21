@@ -51,7 +51,7 @@ def map_root_file_system(root_dir: str):
 load_dotenv(".env")
 ROOT = os.getenv("ROOT_DIR")
 
-DATABASE = database.establish_database_connection("database-map.db")
+database.establish_database_connection("database-map.db")
 ROOT_FILE_MAP = map_root_file_system(ROOT)
 
-database.add_data_to_database(DATABASE, ROOT_FILE_MAP)
+database.add_data_to_database(ROOT_FILE_MAP)
