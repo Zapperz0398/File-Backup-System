@@ -3,7 +3,7 @@
 import os
 from dotenv import load_dotenv
 
-import database
+import local_database
 
 
 def map_root_file_system(root_dir: str):
@@ -51,7 +51,7 @@ def map_root_file_system(root_dir: str):
 load_dotenv(".env")
 ROOT = os.getenv("ROOT_DIR")
 
-database.establish_database_connection()
+local_database.establish_database_connection()
 ROOT_FILE_MAP = map_root_file_system(ROOT)
 
-database.add_data_to_database(ROOT_FILE_MAP)
+local_database.add_data_to_database(ROOT_FILE_MAP)
