@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is a work in progress. It is a local and cloud backup program designed to provide users with a reliable and secure way to backup their important files. Please note that the current code on the main branch is not yet finished or released. It may not be stable and may not perform any functionality.
+This project is a work in progress. It is a local and cloud backup program for the CLI, designed to provide users with a reliable and secure way to backup their important files. Please note that the current code on the main branch is not yet finished or released. It may not be stable and may not perform any functionality.
 
 ## Features (Planned)
 
@@ -12,7 +12,7 @@ This project is a work in progress. It is a local and cloud backup program desig
 - **Selective Backup**: Choose which directories or files to include in each backup.
 - **Encryption**: Ensure data security with encryption options for both local and cloud backups.
 - **Monitoring and Logging**: Monitor backup status and view detailed logs for each backup operation.
-- **Cross-Platform Compatibility**: Designed to work on various operating systems including Windows, macOS, and Linux.
+- **Cross-Platform Compatibility**: Designed to work on various operating systems and their respective CLI platforms, including Windows, macOS, and Linux.
 
 ## Getting Started
 
@@ -20,7 +20,7 @@ As the code is still in development, there are no specific instructions for gett
 
 ## Contributing
 
-Contributions are welcome! If you'd like to contribute to this project, you can start a discussion in the repository to share your ideas, ask questions, or discuss potential contributions with the community. You can also reach out to me with the contact info stated bolow!
+Contributions are welcome! If you'd like to contribute to this project, you can start a discussion in the repository to share your ideas, ask questions, or discuss potential contributions with the community. Feel free to create a pull request. You can also reach out to me with the contact info stated bolow!
 Furthemore, if you have any suggestions for the repo/project, feel free to contact me.
 
 ## License
