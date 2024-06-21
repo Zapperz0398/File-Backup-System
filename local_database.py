@@ -15,7 +15,7 @@ def open_local_database_connection():
 	return database
 
 
-def close_database_connection(database):
+def close_local_database_connection(database):
 	"""
 	Closes a local database connection
 	"""
