@@ -3,6 +3,24 @@
 import os
 import sqlite3
 
+DATABASE_NAME = "database-map.db"
+
+def open_local_database_connection():
+	"""
+	Opens a local database connection
+	"""
+
+	database = sqlite3.connect(DATABASE_NAME)
+
+	return database
+
+
+def close_database_connection(database):
+	"""
+	Closes a local database connection
+	"""
+	database.close()
+
 
 def establish_database_connection(database_name):
 	"""
