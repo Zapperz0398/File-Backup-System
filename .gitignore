@@ -1,6 +1,6 @@
-/desktop.ini
-/.vscode
+.vscode/
 __pycache__/
+/desktop.ini
 
 /database-map.db
 *.env
