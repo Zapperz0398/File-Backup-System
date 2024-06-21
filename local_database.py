@@ -154,3 +154,35 @@ def add_data_to_database(data):
 		database.commit()
 
 	close_local_database_connection(database)
+
+
+def get_file_paths():
+	"""
+	Retrieves all the file paths stored in the database in a nested format
+
+	Returns: List of tuples
+	"""
+
+	database = open_local_database_connection()
+	database_cursor = database.cursor()
+
+	database_cursor.execute("""SELECT Path FROM Files""")
+	data = database_cursor.fetchall()
+
+	return data
+
+
+def get_directory_paths():
+	"""
+	Retrieves all the directory paths stored in the database in a nested format
+
+	Returns: List of tuples
+	"""
+
+	database = open_local_database_connection()
+	database_cursor = database.cursor()
+
+	database_cursor.execute("""SELECT Path FROM Directories""")
+	data = database_cursor.fetchall()
+
+	return data
