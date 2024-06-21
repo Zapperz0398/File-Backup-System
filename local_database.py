@@ -41,7 +41,8 @@ def establish_database_connection():
 		create_database_tables(database_cursor)
 
 		database.commit()
-		close_database_connection(database)
+		close_local_database_connection(database)
+
 	else:
 		database = open_local_database_connection()
 		database_cursor = database.cursor()
@@ -61,7 +62,7 @@ def establish_database_connection():
 			""")
 
 		database.commit()
-		close_database_connection(database)
+		close_local_database_connection(database)
 
 
 def database_table_exists(database_cursor, table_name):
@@ -82,7 +83,7 @@ def database_table_exists(database_cursor, table_name):
 										WHERE type = 'table'
 										AND name = '{table_name}'""")
 
-	close_database_connection(database)
+	close_local_database_connection(database)
 
 	if table.fetchone is None:
 		return False
@@ -115,7 +116,7 @@ def create_database_tables(database_cursor):
 	""")
 
 	database.commit()
-	close_database_connection(database)
+	close_local_database_connection(database)
 
 
 def add_data_to_database(data):
@@ -152,4 +153,4 @@ def add_data_to_database(data):
 		database_cursor.execute(db_query, (file_id, file_path, file_last_modified_time, file_size))
 		database.commit()
 
-	database.close()
+	close_local_database_connection(database)
