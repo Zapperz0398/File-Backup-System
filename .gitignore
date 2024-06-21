@@ -1,5 +1,7 @@
 /desktop.ini
 /.vscode
+__pycache__/
+
 /database-map.db
 *.env
 *.log
