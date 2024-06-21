@@ -22,7 +22,7 @@ def close_database_connection(database):
 	database.close()
 
 
-def establish_database_connection(database_name):
+def establish_database_connection():
 	"""
 	Establishes a connection to the database.
 	Creates a database file if none exists with required tables
@@ -31,8 +31,8 @@ def establish_database_connection(database_name):
 	- database_name: Name of the database to connect to
 	"""
 
-	if not os.path.exists(database_name):
-		with open(database_name, "x", encoding = "utf-8") as _:
+	if not os.path.exists(DATABASE_NAME):
+		with open(DATABASE_NAME, "x", encoding = "utf-8") as _:
 			pass
 
 		database = open_local_database_connection()
