@@ -35,12 +35,15 @@ def establish_database_connection(database_name):
 		with open(database_name, "x", encoding = "utf-8") as _:
 			pass
 
-		database = sqlite3.connect(database_name)
+		database = open_local_database_connection()
 		database_cursor = database.cursor()
 
 		create_database_tables(database_cursor)
+
+		database.commit()
+		close_database_connection(database)
 	else:
-		database = sqlite3.connect(database_name)
+		database = open_local_database_connection()
 		database_cursor = database.cursor()
 
 		if not database_table_exists(database_cursor, "Directories"):
@@ -57,7 +60,8 @@ def establish_database_connection(database_name):
 										byte_size int)
 			""")
 
-	return database
+		database.commit()
+		close_database_connection(database)
 
 
 def database_table_exists(database_cursor, table_name):
@@ -71,9 +75,14 @@ def database_table_exists(database_cursor, table_name):
 	Returns: bool
 	"""
 
+	database = open_local_database_connection()
+	database_cursor = database.cursor()
+
 	table = database_cursor.execute(f"""SELECT name FROM sqlite_master
 										WHERE type = 'table'
 										AND name = '{table_name}'""")
+
+	close_database_connection(database)
 
 	if table.fetchone is None:
 		return False
@@ -90,6 +99,9 @@ def create_database_tables(database_cursor):
 	Returns: None
 	"""
 
+	database = open_local_database_connection()
+	database_cursor = database.cursor()
+
 	database_cursor.execute("""CREATE TABLE Directories (
 								ID int PRIMARY KEY,
 								path TEXT)
@@ -102,8 +114,11 @@ def create_database_tables(database_cursor):
 								byte_size int)
 	""")
 
+	database.commit()
+	close_database_connection(database)
 
-def add_data_to_database(database, data):
+
+def add_data_to_database(data):
 	"""
 	Adds a mapped file-system data set to a local database
 	
@@ -114,6 +129,7 @@ def add_data_to_database(database, data):
 	Returns: None
 	"""
 
+	database = open_local_database_connection()
 	database_cursor = database.cursor()
 
 	for data_set in data["Directories"]:
