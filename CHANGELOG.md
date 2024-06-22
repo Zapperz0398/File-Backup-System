@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Functionality for local database creation
 - Functionality to map device file-system based on root directory
 - Functionality to add a mapped file system to the database
+- Functionality to retrieve saved mapped files & directories from database
 
 ### Changed
 
