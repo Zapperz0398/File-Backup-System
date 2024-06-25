@@ -48,6 +48,15 @@ def map_root_file_system(root_dir: str):
 	return file_system_map
 
 
+def create_root_filesystem_copy(root_path):
+	"""
+	Creates an exact copy of the root file path
+
+	Parameters:
+	- root_path: The root/parent directory to copy
+	"""
+
+
 load_dotenv(".env")
 ROOT = os.getenv("ROOT_DIR")
 
